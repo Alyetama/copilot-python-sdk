@@ -21,7 +21,12 @@ class PyCopilotSDK:
     def __init__(self, config_file: str = '/config/cfg.json'):
         self.config_file = config_file
 
-    def load_config(self) -> dict:
+    def load_config(self) -> Optional[dict]:
+        """Loads the config file and returns a dictionary.
+
+        Returns:
+            dict: The config dictionary.
+        """
         if not Path(self.config_file).exists():
             logger.warning(
                 'Could not find a config file in the app/ directory!')
@@ -30,9 +35,24 @@ class PyCopilotSDK:
             return json.load(j)
 
     def load_data(self,
-                      source_file: Optional[Union[Iterable, str]] = None,
-                      save_raw_csv: bool = False,
-                      save_compressed_csv: bool = False):
+                  source_file: Optional[Union[Iterable, str]] = None,
+                  save_raw_csv: bool = False,
+                  save_compressed_csv: bool = False) -> pd.DataFrame:
+        """Loads the data from the source file(s) and returns a pandas
+        dataframe.
+
+        Args:
+            source_file (Union[Iterable, str], optional): The source file(s)
+                to be loaded. If None, the source file(s) specified in the
+                config file will be loaded. Defaults to None.
+            save_raw_csv (bool, optional): Whether to save the raw csv file.
+                Defaults to False.
+            save_compressed_csv (bool, optional): Whether to save the
+                compressed csv file. Defaults to False.
+
+        Returns:
+            pandas.DataFrame: The dataframe containing the data.
+        """
         cfg = self.load_config()
         if not source_file and cfg:
             if cfg.get('source_file'):

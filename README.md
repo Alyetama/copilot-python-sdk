@@ -23,7 +23,7 @@ docker pull alyetama/python-copilot-sdk:latest
 
 - All your source data should be kept in `data/`.
 - Edit `cfg.json` to add your parameters. Each key-value pair represents a positional argument and its value in your function.
-The `source_file` key should always be present and point to the `.rds` data file path. For example, if we have data file `input2_geese.rds` and we want to run a function `plot_data` that takes two positionl arguments `x_axis` and `y_axis`: `plot_data(data, x_axis, y_axis)`. Your cfg.json file should look like this:
+The `source_file` key should always be present and point to the `.rds` data file path. For example, if we have data file `input2_geese.rds` and we want to run a function `plot_data` that takes two positionl arguments `x_axis` and `y_axis`: `plot_data(data, x_axis, y_axis)`. Your `cfg.json` file should look like this:
 
 ```json
 {
@@ -35,11 +35,9 @@ The `source_file` key should always be present and point to the `.rds` data file
 
 ### Considerations:
 - Always prefix the source file(s) with `/data/`.
-- If you're generating output files in your app, prefix the destination path of your output file(s) with `/output/`.
+- If you're generating output file(s) from your app, prefix the destination path of your output file(s) with `/output/`.
 
 See example app: [app/app.py](./app/app.py).
-
-
 
 ## Run
 
