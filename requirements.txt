@@ -1,0 +1,4 @@
+pandas>=1.4.3
+rpy2>=3.5.1
+loguru>=0.6.0
+matplotlib>=3.5.2
